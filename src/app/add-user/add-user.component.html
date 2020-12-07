@@ -1,0 +1,48 @@
+<mat-card>
+  <mat-card-header>
+      <mat-card-title>Add User</mat-card-title>
+  </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="addForm" (ngSubmit)="addUser()" class="form" novalidate>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="First Name" formControlName="firstName">
+        </mat-form-field>
+        <mat-error *ngIf="submitted && addForm.controls.firstName.errors">
+          You must provide a <strong>first name</strong>
+        </mat-error>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+        <mat-error *ngIf="submitted && addForm.controls.lastName.errors">
+          You must provide a <strong>last name</strong>
+        </mat-error>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Email" formControlName="emailAddress">
+        </mat-form-field>
+        <mat-error *ngIf="submitted && addForm.controls.emailAddress.errors && addForm.controls.emailAddress.errors.required">
+          {{() ? You must provide an <strong>email address</strong>
+        </mat-error>
+        <mat-error *ngIf="submitted && addForm.controls.emailAddress.errors  && addForm.controls.emailAddress.errors.email">
+          Please provide a valid <strong>email address</strong>
+        </mat-error>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Active Directory Id" formControlName="aadId">
+        </mat-form-field>
+        <mat-error *ngIf="submitted && error">
+          {{error}}
+        </mat-error>
+        <div class="button-wrapper">
+          <button mat-flat-button color="primary" type="submit">Submit</button>
+        </div>
+      </form>
+    </mat-card-content>
+    <div *ngIf="error">
+      <app-error [error]="httpError" [message]="httpMessage"></app-error>
+    </div>
+</mat-card>
+
+

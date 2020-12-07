@@ -1,0 +1,45 @@
+<h1>Users: </h1>
+<div class="spinner-div" *ngIf="!users || users.length === 0">
+  <mat-spinner diameter="150"></mat-spinner>
+</div>
+<div *ngIf="users && users.length > 0" class="example-container mat-elevation-z8">
+  <table mat-table [dataSource]="users">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id</th>
+      <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef> First Name</th>
+      <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef> Last Name</th>
+      <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="emailAddress">
+      <th mat-header-cell *matHeaderCellDef> Email</th>
+      <td mat-cell *matCellDef="let user"> {{user.emailAddress}} </td>
+    </ng-container>
+    <ng-container matColumnDef="aadId">
+      <th mat-header-cell *matHeaderCellDef> AAD Id</th>
+      <td mat-cell *matCellDef="let user"> {{user.aadId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef> Created</th>
+      <td mat-cell *matCellDef="let user"> {{user.createdAt | date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="updatedAt">
+      <th mat-header-cell *matHeaderCellDef> Updated</th>
+      <td mat-cell *matCellDef="let user"> {{user.updatedAt | date}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+  </table>
+</div>
+
+
+
+<div *ngIf="error">
+  <app-error [error]="error" [message]="message"></app-error>
+</div>

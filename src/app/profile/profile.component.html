@@ -1,0 +1,28 @@
+<h1>Welcome {{profile?.displayName}}</h1>
+
+<p>User AAD Details:</p>
+<div *ngIf="profile">
+  <ul>
+    <li><strong>Given Name:</strong> {{profile.givenName}}</li>
+    <li><strong>Last Name:</strong> {{profile.surname}}</li>
+    <li><strong>AAD Id:</strong> {{profile.id}}</li>
+    <li><strong>Email:</strong> {{profile.mail}}</li>
+  </ul>
+</div>
+<p>User API Details:</p>
+<div *ngIf="user">
+  <ul>
+    <li><strong>First Name: </strong>{{user.firstName}}</li>
+    <li><strong>Last Name: </strong>{{user.lastName}}</li>
+    <li><strong>Email: </strong>{{user.emailAddress}}</li>
+    <li><strong>AAD Id: </strong>{{user.aadId}}</li>
+    <li><strong>Created: </strong>{{user.createdAt}}</li>
+    <li><strong>Updated: </strong>{{user.updatedAt}}</li>
+  </ul>
+</div>
+
+<div *ngIf="error">
+  <app-error [error]="error" [message]="message"></app-error>
+</div>
+
+
