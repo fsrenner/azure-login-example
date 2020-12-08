@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>
+  {{title}}
+</h1>
+
+<div mat-dialog-content>
+  <p>{{message}}</p>
+  <div *ngIf="user">
+    <mat-list>
+      <mat-list-item><strong>Id</strong>: {{user.id}}</mat-list-item>
+      <mat-list-item><strong>First Name</strong>: {{user.firstName}}</mat-list-item>
+      <mat-list-item><strong>Last Name</strong>: {{user.lastName}}</mat-list-item>
+      <mat-list-item><strong>Email</strong>: {{user.emailAddress}}</mat-list-item>
+      <mat-list-item><strong>AAD id</strong>: {{user.aadId}}</mat-list-item>
+      <mat-list-item><strong>Created</strong>: {{user.createdAt | date}}</mat-list-item>
+      <mat-list-item><strong>Updated</strong>: {{user.updatedAt | date}}</mat-list-item>
+     </mat-list>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onClose()">Close</button>
+</div>

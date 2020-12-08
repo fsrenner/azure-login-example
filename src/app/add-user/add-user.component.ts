@@ -1,7 +1,10 @@
 import { UserService } from './../_services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators, EmailValidator } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../user';
+import { SuccessDialogComponent, SuccessDialogModel } from '../_shared/success-dialog/success-dialog.component';
+import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -16,7 +19,12 @@ export class AddUserComponent implements OnInit {
   addForm: FormGroup;
   user: User;
 
-  constructor(public fb: FormBuilder, private userService: UserService) {}
+  constructor(
+    public fb: FormBuilder,
+    private userService: UserService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
@@ -44,7 +52,7 @@ export class AddUserComponent implements OnInit {
       this.userService.addUser(postParams).subscribe(
         user => {
           this.user = user;
-          console.log(user);
+          this.showAddSuccess(user);
         },
         error => {
           this.httpError = error.message;
@@ -52,6 +60,19 @@ export class AddUserComponent implements OnInit {
         }
       );
     }
+  }
+
+  showAddSuccess(user: User): void {
+    const message = `Successfully added: ${this.user.firstName} ${this.user.lastName}`;
+    const title = 'User Added';
+    const dialogData = new SuccessDialogModel(title, message, user);
+    const dialogRef = this.dialog.open(SuccessDialogComponent, {
+      maxWidth: '600px',
+      data: dialogData
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.router.navigate(['users']);
+    });
   }
 
 }

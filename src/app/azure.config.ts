@@ -6,7 +6,6 @@ export class AzureConfig {
   public static readonly graphUrl = 'https://graph.microsoft.com/v1.0/me';
   public static readonly auth = {
     clientId: 'e6140f52-da3c-494e-ad77-4a9af1d6d140', // This is your client ID
-    // authority: 'https://login.microsoftonline.com/5b6d5fab-38ab-4efa-894a-08a20982f64d', // This is your tenant ID
     authority: 'https://login.microsoftonline.com/ocmdev.onmicrosoft.com',
     validateAuthority: true,
     redirectUri: AzureConfig.redirectUri,

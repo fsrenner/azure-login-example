@@ -11,7 +11,7 @@ export class GetUsersComponent implements OnInit {
   users: User[];
   error: any;
   message: string;
-  displayColumns: string[] = ['id','firstName', 'lastName', 'emailAddress', 'aadId', 'createdAt', 'updatedAt'];
+  displayColumns: string[] = ['id', 'firstName', 'lastName', 'emailAddress', 'aadId', 'createdAt', 'updatedAt'];
 
   constructor(private userService: UserService) { }
 

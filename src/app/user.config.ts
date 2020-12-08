@@ -3,7 +3,8 @@ export class UserConfig {
 
   public static readonly restEndpoints = {
     LOGIN: 'login',
-    USER: 'v1/users'
+    USER: 'v1/users',
+    USER_ID: 'v1/users/id'
   };
 
   public static readonly restHeaders = {

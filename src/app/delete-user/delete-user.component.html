@@ -1,1 +1,35 @@
-<p>delete-user works!</p>
+<mat-card>
+  <mat-card-header>
+      <mat-card-title>Delete User</mat-card-title>
+  </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="selectForm" (ngSubmit)="confirmDelete()" class="form" novalidate>
+        <mat-form-field appearance="fill">
+          <mat-label>Select a User to Update</mat-label>
+          <mat-select [(value)]="selectedUser" (selectionChange)="setSelectedUser()" formControlName="selectedUser">
+            <mat-option *ngFor="let user of users" [value]="user.id">
+              {{user.id}} {{user.firstName}} {{user.lastName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="selectedUser">
+          <mat-list>
+            <mat-list-item><strong>Id</strong>: {{user.id}}</mat-list-item>
+            <mat-list-item><strong>First Name</strong>: {{user.firstName}}</mat-list-item>
+            <mat-list-item><strong>Last Name</strong>: {{user.lastName}}</mat-list-item>
+            <mat-list-item><strong>Email</strong>: {{user.emailAddress}}</mat-list-item>
+            <mat-list-item><strong>AAD id</strong>: {{user.aadId}}</mat-list-item>
+            <mat-list-item><strong>Created</strong>: {{user.createdAt | date}}</mat-list-item>
+            <mat-list-item><strong>Updated</strong>: {{user.updatedAt | date}}</mat-list-item>
+           </mat-list>
+        </div>
+
+      <div class="button-wrapper">
+        <button mat-flat-button color="primary" type="submit">Submit</button>
+      </div>
+    </form>
+  </mat-card-content>
+  <div *ngIf="error">
+    <app-error [error]="httpError" [message]="httpMessage"></app-error>
+  </div>
+</mat-card>

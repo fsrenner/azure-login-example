@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './material-module/material.module';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -26,6 +26,8 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './_shared/error/error.component';
+import { ConfirmDialogComponent } from './_shared/confirm-dialog/confirm-dialog.component';
+import { SuccessDialogComponent } from './_shared/success-dialog/success-dialog.component';
 
 function MSALConfigFactory(): Configuration {
   return {
@@ -47,7 +49,9 @@ function MSALAngularConfigFactory(): MsalAngularConfiguration {
     UpdateUserComponent,
     DeleteUserComponent,
     HomeComponent,
-    ErrorComponent
+    ErrorComponent,
+    ConfirmDialogComponent,
+    SuccessDialogComponent
   ],
   imports: [
     BrowserModule,

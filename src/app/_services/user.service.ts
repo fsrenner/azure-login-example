@@ -18,15 +18,19 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   public login(): Observable<any> {
-    // let loginUrl = UserConfig.getRestUrl(UserConfig.restEndpoints.LOGIN);
-    // loginUrl = 'https://localhost:44308/api/login';
-    // console.log(loginUrl);
     return this.http.post(this.loginUrl, {}, httpOptions);
   }
 
-  public getUsers(): Observable<any> {
-    const getUrl = UserConfig.getRestUrl(UserConfig.restEndpoints.USER);
+  public getUsers(id?: number): Observable<any> {
+    const getUrl = id
+      ? UserConfig.getRestUrl(UserConfig.restEndpoints.USER, id)
+      : UserConfig.getRestUrl(UserConfig.restEndpoints.USER);
     return this.http.get(getUrl, httpOptions);
+  }
+
+  public getUserIds(): Observable<any> {
+    const getIdsUrl = UserConfig.getRestUrl(UserConfig.restEndpoints.USER_ID);
+    return this.http.get(getIdsUrl, httpOptions);
   }
 
   public addUser(body: {
@@ -47,5 +51,10 @@ export class UserService {
   }): Observable<any> {
     const putUrl = UserConfig.getRestUrl(UserConfig.restEndpoints.USER, id);
     return this.http.put(putUrl, body, httpOptions);
+  }
+
+  public deleteUser(id: number): Observable<any> {
+    const deleteUrl = UserConfig.getRestUrl(UserConfig.restEndpoints.USER, id);
+    return this.http.delete(deleteUrl, httpOptions);
   }
 }
