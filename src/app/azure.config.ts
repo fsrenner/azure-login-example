@@ -19,8 +19,7 @@ export class AzureConfig {
 
   public static readonly protectedResourceMap: [string, string[]][] = [
     [AzureConfig.graphUrl, ['user.read']],
-    [UserConfig.getBaseUrl(), [AzureConfig.auth.clientId]],
-    ['https://localhost:44308/api', ['api://e6140f52-da3c-494e-ad77-4a9af1d6d140/User.Read']]
+    [UserConfig.getBaseUrl(), ['api://e6140f52-da3c-494e-ad77-4a9af1d6d140/User.Read']]
   ];
 
   public static readonly msalAngularConfig = {
